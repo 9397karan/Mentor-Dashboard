@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Edit3, Save, X, Calendar, MapPin, Phone, Mail, BookOpen, Award } from 'lucide-react';
 
-const Profile= () => {
+const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Dr. Sarah Johnson',
@@ -23,9 +23,10 @@ const Profile= () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+    <div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold">Profile</h1>
         <div className="flex space-x-3">
           {isEditing ? (
             <>
@@ -56,113 +57,102 @@ const Profile= () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="space-y-6">
         {/* Profile Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">SJ</span>
-            </div>
-            {isEditing ? (
-              <input
-                type="text"
-                value={profile.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
-                className="text-xl font-bold text-center w-full border-b border-gray-300 focus:border-blue-500 outline-none"
-              />
-            ) : (
-              <h2 className="text-xl font-bold text-gray-900">{profile.name}</h2>
-            )}
-            <p className="text-gray-600 mt-1">{profile.position}</p>
-            <p className="text-blue-600 font-medium">{profile.department}</p>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700 text-center">
+          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <span className="text-white text-2xl font-bold">SJ</span>
           </div>
+          {isEditing ? (
+            <input
+              type="text"
+              value={profile.name}
+              onChange={(e) => handleInputChange('name', e.target.value)}
+              className="text-xl font-bold text-center w-full border-b border-gray-300 dark:border-gray-600 focus:border-blue-500 outline-none bg-transparent"
+            />
+          ) : (
+            <h2 className="text-xl font-bold">{profile.name}</h2>
+          )}
+          <p className="text-gray-600 dark:text-gray-300 mt-1">{profile.position}</p>
+          <p className="text-blue-600 dark:text-blue-400 font-medium">{profile.department}</p>
 
-          <div className="mt-6 space-y-3">
-            <div className="flex items-center space-x-3 text-sm text-gray-600">
+          <div className="mt-6 space-y-3 text-left">
+            <div className="flex items-center space-x-3 text-sm text-gray-600 dark:text-gray-300">
               <Mail size={16} />
               <span>{profile.email}</span>
             </div>
-            <div className="flex items-center space-x-3 text-sm text-gray-600">
+            <div className="flex items-center space-x-3 text-sm text-gray-600 dark:text-gray-300">
               <Phone size={16} />
               <span>{profile.phone}</span>
             </div>
-            <div className="flex items-center space-x-3 text-sm text-gray-600">
+            <div className="flex items-center space-x-3 text-sm text-gray-600 dark:text-gray-300">
               <MapPin size={16} />
               <span>{profile.location}</span>
             </div>
-            <div className="flex items-center space-x-3 text-sm text-gray-600">
+            <div className="flex items-center space-x-3 text-sm text-gray-600 dark:text-gray-300">
               <Calendar size={16} />
               <span>Joined {new Date(profile.joinDate).toLocaleDateString()}</span>
             </div>
           </div>
         </div>
 
-        {/* Details */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Bio */}
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">About</h3>
-            {isEditing ? (
-              <textarea
-                value={profile.bio}
-                onChange={(e) => handleInputChange('bio', e.target.value)}
-                rows={4}
-                className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            ) : (
-              <p className="text-gray-700 leading-relaxed">{profile.bio}</p>
-            )}
+        {/* About */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold mb-4">About</h3>
+          {isEditing ? (
+            <textarea
+              value={profile.bio}
+              onChange={(e) => handleInputChange('bio', e.target.value)}
+              rows={4}
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent text-gray-900 dark:text-gray-100"
+            />
+          ) : (
+            <p className="leading-relaxed">{profile.bio}</p>
+          )}
+        </div>
+
+        {/* Stats */}
+        <div className="space-y-4">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow p-6 text-white flex items-center justify-between">
+            <div>
+              <p className="text-blue-100">Total Students</p>
+              <p className="text-3xl font-bold">{profile.studentsCount}</p>
+            </div>
+            <BookOpen size={40} className="text-blue-200" />
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-sm p-6 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-blue-100">Total Students</p>
-                  <p className="text-3xl font-bold">{profile.studentsCount}</p>
-                </div>
-                <BookOpen size={40} className="text-blue-200" />
-              </div>
+          <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl shadow p-6 text-white flex items-center justify-between">
+            <div>
+              <p className="text-purple-100">Events Conducted</p>
+              <p className="text-3xl font-bold">{profile.eventsCount}</p>
             </div>
-
-            <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl shadow-sm p-6 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-purple-100">Events Conducted</p>
-                  <p className="text-3xl font-bold">{profile.eventsCount}</p>
-                </div>
-                <Award size={40} className="text-purple-200" />
-              </div>
-            </div>
+            <Award size={40} className="text-purple-200" />
           </div>
+        </div>
 
-          {/* Subjects & Qualifications */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Subjects Taught</h3>
-              <div className="space-y-2">
-                {profile.subjects.map((subject, index) => (
-                  <span
-                    key={index}
-                    className="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm mr-2 mb-2"
-                  >
-                    {subject}
-                  </span>
-                ))}
-              </div>
-            </div>
+        {/* Subjects */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold mb-4">Subjects Taught</h3>
+          <div className="space-y-2">
+            {profile.subjects.map((subject, index) => (
+              <span
+                key={index}
+                className="inline-block bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2"
+              >
+                {subject}
+              </span>
+            ))}
+          </div>
+        </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Qualifications</h3>
-              <div className="space-y-2">
-                {profile.qualifications.map((qual, index) => (
-                  <div key={index} className="text-sm text-gray-700">
-                    • {qual}
-                  </div>
-                ))}
+        {/* Qualifications */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold mb-4">Qualifications</h3>
+          <div className="space-y-2">
+            {profile.qualifications.map((qual, index) => (
+              <div key={index} className="text-sm text-gray-700 dark:text-gray-300">
+                • {qual}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

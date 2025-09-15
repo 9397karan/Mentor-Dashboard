@@ -27,16 +27,16 @@ const Sidebar = ({ activeTab, setActiveTab, collapsed, setCollapsed }) => {
   ];
 
   return (
-    <div className={`bg-white shadow-lg transition-all duration-300 fixed left-0 top-0 h-full z-50 ${collapsed ? 'w-20' : 'w-64'}`}>
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+    <div className={`bg-white dark:bg-gray-900 shadow-lg transition-all duration-300 fixed left-0 top-0 h-full z-50 ${collapsed ? 'w-20' : 'w-64'}`}>
+      <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
         {!collapsed && (
-          <h1 className="text-xl font-bold text-gray-800">Mentor Dashboard</h1>
+          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mentor Dashboard</h1>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         >
-          {collapsed ? <Menu size={20} /> : <X size={20} />}
+          {collapsed ? <Menu size={20} className="text-gray-800 dark:text-gray-100" /> : <X size={20} className="text-gray-800 dark:text-gray-100" />}
         </button>
       </div>
       
@@ -51,8 +51,8 @@ const Sidebar = ({ activeTab, setActiveTab, collapsed, setCollapsed }) => {
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center px-4 py-3 text-left transition-all duration-200 ${
                 isActive 
-                  ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
+                  ? 'bg-blue-50 dark:bg-blue-800 text-blue-600 dark:text-blue-300 border-r-2 border-blue-600 dark:border-blue-300' 
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-100'
               }`}
             >
               <Icon size={20} className="flex-shrink-0" />

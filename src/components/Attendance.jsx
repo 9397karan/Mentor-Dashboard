@@ -10,8 +10,10 @@ import {
   Link as LinkIcon,
   FileSpreadsheet
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Attendance = () => {
+  const { theme } = useTheme();
   const [activeView, setActiveView] = useState('manual');
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
@@ -31,20 +33,19 @@ const Attendance = () => {
   };
 
   const toggleAttendance = (studentId) => {
-    // Logic to toggle attendance
     console.log(`Toggle attendance for student ${studentId}`);
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900">Attendance System</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Attendance System</h1>
         <div className="flex items-center space-x-3">
           <input
             type="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
           />
           <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
             Save Attendance
@@ -54,52 +55,40 @@ const Attendance = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Total Students</p>
-              <p className="text-2xl font-bold text-gray-900">{attendanceStats.totalStudents}</p>
+        {[{
+          label: 'Total Students',
+          value: attendanceStats.totalStudents,
+          icon: <Users className="text-blue-500" size={32} />
+        },{
+          label: 'Present Today',
+          value: attendanceStats.presentToday,
+          icon: <CheckCircle className="text-green-500" size={32} />
+        },{
+          label: 'Absent Today',
+          value: attendanceStats.absentToday,
+          icon: <XCircle className="text-red-500" size={32} />
+        },{
+          label: 'Average Attendance',
+          value: `${attendanceStats.averageAttendance}%`,
+          icon: <BarChart3 className="text-blue-500" size={32} />
+        }].map((card, idx) => (
+          <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">{card.label}</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{card.value}</p>
+              </div>
+              {card.icon}
             </div>
-            <Users className="text-blue-500" size={32} />
           </div>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Present Today</p>
-              <p className="text-2xl font-bold text-green-600">{attendanceStats.presentToday}</p>
-            </div>
-            <CheckCircle className="text-green-500" size={32} />
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Absent Today</p>
-              <p className="text-2xl font-bold text-red-600">{attendanceStats.absentToday}</p>
-            </div>
-            <XCircle className="text-red-500" size={32} />
-          </div>
-        </div>
-
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-500 text-sm">Average Attendance</p>
-              <p className="text-2xl font-bold text-blue-600">{attendanceStats.averageAttendance}%</p>
-            </div>
-            <BarChart3 className="text-blue-500" size={32} />
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Attendance Methods */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="border-b border-gray-200">
+      {/* Attendance Methods Tabs */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="border-b border-gray-200 dark:border-gray-700">
           <nav className="flex space-x-8 px-6">
-            {[
+            {[ 
               { id: 'manual', label: 'Manual Marking', icon: CheckCircle },
               { id: 'excel', label: 'Excel Upload', icon: FileSpreadsheet },
               { id: 'sheets', label: 'Google Sheets', icon: LinkIcon },
@@ -112,8 +101,8 @@ const Attendance = () => {
                   onClick={() => setActiveView(tab.id)}
                   className={`py-4 px-2 border-b-2 font-medium text-sm flex items-center space-x-2 ${
                     activeView === tab.id
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700'
+                      ? 'border-blue-500 text-blue-600 dark:text-blue-400'
+                      : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
                   }`}
                 >
                   <Icon size={16} />
@@ -124,24 +113,20 @@ const Attendance = () => {
           </nav>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 text-gray-900 dark:text-gray-100">
           {activeView === 'manual' && (
             <div className="space-y-4">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900">Manual Attendance Marking</h3>
+                <h3 className="text-lg font-semibold">Manual Attendance Marking</h3>
                 <div className="flex space-x-2">
-                  <button className="px-3 py-1 bg-green-100 text-green-700 rounded-lg text-sm">
-                    Mark All Present
-                  </button>
-                  <button className="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-sm">
-                    Mark All Absent
-                  </button>
+                  <button className="px-3 py-1 bg-green-100 text-green-700 rounded-lg text-sm">Mark All Present</button>
+                  <button className="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-sm">Mark All Absent</button>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-3">
                 {students.map((student) => (
-                  <div key={student.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                  <div key={student.id} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                     <div className="flex items-center space-x-4">
                       <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                         <span className="text-white font-semibold text-sm">
@@ -149,11 +134,11 @@ const Attendance = () => {
                         </span>
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{student.name}</h4>
-                        <p className="text-sm text-gray-500">{student.rollNumber}</p>
+                        <h4 className="font-medium">{student.name}</h4>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{student.rollNumber}</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center space-x-3">
                       <button
                         onClick={() => toggleAttendance(student.id)}
@@ -184,17 +169,16 @@ const Attendance = () => {
 
           {activeView === 'excel' && (
             <div className="text-center py-12">
-              <div className="border-2 border-dashed border-gray-300 rounded-xl p-12">
-                <Upload size={48} className="mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Upload Excel File</h3>
-                <p className="text-gray-600 mb-4">
-                  Upload an Excel file with student roll numbers and attendance status.
-                  Our AI will automatically parse and mark attendance.
+              <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-12">
+                <Upload size={48} className="mx-auto text-gray-400 dark:text-gray-300 mb-4" />
+                <h3 className="text-lg font-medium mb-2">Upload Excel File</h3>
+                <p className="mb-4 text-gray-600 dark:text-gray-400">
+                  Upload an Excel file with roll numbers and attendance data.
                 </p>
                 <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   Choose File
                 </button>
-                <p className="text-xs text-gray-500 mt-2">Supports .xlsx, .xls files</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Supports .xlsx, .xls files</p>
               </div>
             </div>
           )}
@@ -203,38 +187,36 @@ const Attendance = () => {
             <div className="space-y-6">
               <div className="text-center">
                 <LinkIcon size={48} className="mx-auto text-blue-500 mb-4" />
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Google Sheets Integration</h3>
-                <p className="text-gray-600 mb-6">
-                  Connect your Google Sheets to automatically sync attendance data
+                <h3 className="text-lg font-medium mb-2">Google Sheets Integration</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  Connect your Google Sheets for auto-sync attendance.
                 </p>
               </div>
 
               <div className="max-w-md mx-auto">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Google Sheets URL
-                </label>
+                <label className="block text-sm font-medium mb-2">Google Sheets URL</label>
                 <div className="flex space-x-2">
                   <input
                     type="url"
                     placeholder="https://docs.google.com/spreadsheets/d/..."
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
                   />
                   <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                     Connect
                   </button>
                 </div>
-                <p className="text-xs text-gray-500 mt-2">
-                  Make sure the sheet is publicly accessible or shared with our service account
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  Ensure public access or shared with service account
                 </p>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h4 className="font-medium text-blue-900 mb-2">Sheet Format Requirements:</h4>
-                <ul className="text-sm text-blue-800 space-y-1">
+              <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                <h4 className="font-medium text-blue-900 dark:text-blue-100 mb-2">Sheet Format Requirements:</h4>
+                <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
                   <li>• Column A: Student Roll Numbers</li>
                   <li>• Column B: Student Names</li>
                   <li>• Column C: Attendance Status (P/A or 1/0)</li>
-                  <li>• First row should contain headers</li>
+                  <li>• First row must contain headers</li>
                 </ul>
               </div>
             </div>
@@ -242,19 +224,19 @@ const Attendance = () => {
 
           {activeView === 'analytics' && (
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-gray-900">Attendance Analytics</h3>
-              
+              <h3 className="text-lg font-semibold">Attendance Analytics</h3>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="font-medium text-gray-900 mb-4">Class Attendance Trends</h4>
-                  <div className="h-64 flex items-center justify-center text-gray-500">
+                <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                  <h4 className="font-medium mb-4">Class Attendance Trends</h4>
+                  <div className="h-64 flex items-center justify-center text-gray-500 dark:text-gray-300">
                     <BarChart3 size={64} />
-                    <span className="ml-2">Chart visualization would go here</span>
+                    <span className="ml-2">Chart visualization goes here</span>
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h4 className="font-medium text-gray-900 mb-4">Student Performance</h4>
+                <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                  <h4 className="font-medium mb-4">Student Performance</h4>
                   <div className="space-y-3">
                     {[
                       { name: 'Sarah Chen', percentage: 95, status: 'excellent' },
@@ -262,10 +244,10 @@ const Attendance = () => {
                       { name: 'Emily Watson', percentage: 76, status: 'average' },
                       { name: 'David Rodriguez', percentage: 62, status: 'poor' }
                     ].map((student, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg">
-                        <span className="font-medium text-gray-900">{student.name}</span>
+                      <div key={index} className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg">
+                        <span className="font-medium">{student.name}</span>
                         <div className="flex items-center space-x-3">
-                          <div className="w-24 bg-gray-200 rounded-full h-2">
+                          <div className="w-24 bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                             <div 
                               className={`h-2 rounded-full ${
                                 student.status === 'excellent' ? 'bg-green-500' :
@@ -275,7 +257,9 @@ const Attendance = () => {
                               style={{ width: `${student.percentage}%` }}
                             />
                           </div>
-                          <span className="text-sm font-medium text-gray-600">{student.percentage}%</span>
+                          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                            {student.percentage}%
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -284,11 +268,11 @@ const Attendance = () => {
               </div>
 
               <div className="flex justify-end space-x-3">
-                <button className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors flex items-center space-x-2">
+                <button className="px-4 py-2 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-200 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors flex items-center space-x-2">
                   <Download size={16} />
                   <span>Export Report</span>
                 </button>
-                <button className="px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors">
+                <button className="px-4 py-2 bg-green-100 dark:bg-green-800 text-green-700 dark:text-green-200 rounded-lg hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                   Generate Monthly Report
                 </button>
               </div>

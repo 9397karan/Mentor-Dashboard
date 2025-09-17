@@ -35,9 +35,9 @@ const RiskAnalysis = () => {
   ];
 
   return (
-    <div className="space-y-6">
+     <div className="space-y-6 bg-gray-100 dark:bg-black dark:text-gray-100 transition-colors duration-300 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Student Risk Analysis</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-[#2196F3]">Student Risk Analysis</h1>
         <div className="flex items-center space-x-3">
           <select
             value={selectedPeriod}
@@ -48,7 +48,7 @@ const RiskAnalysis = () => {
             <option value="month">This Month</option>
             <option value="semester">This Semester</option>
           </select>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="px-4 py-2 bg-[#2196F3] text-white rounded-lg hover:bg-blue-700 transition-colors">
             Generate Report
           </button>
         </div>
@@ -63,7 +63,7 @@ const RiskAnalysis = () => {
           { label: 'Need Intervention', value: riskMetrics.interventionNeeded, icon: Target, color: 'purple' },
           { label: 'Improving', value: riskMetrics.improvingTrend, icon: BarChart3, color: 'green' }
         ].map(({ label, value, icon: Icon, color }, index) => (
-          <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-black dark:border-[#05355c]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm dark:text-gray-300">{label}</p>
@@ -77,14 +77,14 @@ const RiskAnalysis = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* At-Risk Students List */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 dark:bg-black dark:border-[#05355c]">
+          <div className="p-6 border-b border-gray-200 dark:border-[#05355c]">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">High Priority Students</h2>
             <p className="text-gray-600 text-sm dark:text-gray-300">Students requiring immediate attention</p>
           </div>
           <div className="p-6 space-y-4">
             {atRiskStudents.map((student) => (
-              <div key={student.id} className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow dark:border-gray-700">
+              <div key={student.id} className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow dark:border-[#05355c]">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center">
@@ -121,7 +121,7 @@ const RiskAnalysis = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-lg p-4 mb-4 dark:bg-gray-700">
+                <div className="bg-gray-50 rounded-lg p-4 mb-4 dark:bg-black">
                   <h4 className="font-medium text-gray-900 dark:text-white mb-3">AI Predictions</h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -171,7 +171,7 @@ const RiskAnalysis = () => {
 
         {/* Sidebar Analytics */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white rounded-xl shadow-sm border dark:border-[#021b30] p-6 dark:bg-black ">
             <div className="flex items-center space-x-2 mb-4">
               <Brain className="text-purple-500" size={24} />
               <h3 className="font-semibold text-gray-900 dark:text-white">AI Insights</h3>
@@ -198,7 +198,7 @@ const RiskAnalysis = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-black dark:border-[#03223b]">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Stress Indicators</h3>
 
             <div className="space-y-4">
@@ -225,7 +225,7 @@ const RiskAnalysis = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-gray-800 dark:border-gray-700">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 dark:bg-black dark:border-[#031e35]">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
 
             <div className="space-y-3">

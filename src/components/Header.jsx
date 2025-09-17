@@ -6,43 +6,59 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-6 py-4 transition-colors duration-300">
+    <header className={`px-6 py-4 transition-colors duration-300  shadow-sm ${
+      theme === 'dark' ? 'bg-black border-[#1976D2]' : 'bg-white border-[#0057D9]'
+    }`}>
       <div className="flex items-center justify-between">
+        {/* Search Bar */}
         <div className="flex items-center space-x-4">
           <div className="relative">
-            <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+            <Search
+              size={20}
+              className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${
+                theme === 'dark' ? 'text-[#2196F3]' : 'text-gray-400'
+              }`}
+            />
             <input
               type="text"
-              placeholder="Search students, assignments, events..."
-              className="pl-10 pr-4 py-2 w-80 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              placeholder=""
+              className={`pl-10 pr-4 py-2 w-80 rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#2196F3] ${
+                theme === 'dark'
+                  ? 'bg-black text-[#ffffff] border-[#ffffff] placeholder-[#ffffff]'
+                  : 'bg-white text-gray-900 border-gray-300 placeholder-gray-400'
+              }`}
             />
           </div>
         </div>
-        
+
+        {/* Right Section */}
         <div className="flex items-center space-x-4">
-          <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 relative">
-            <Bell size={20} className="text-gray-600 dark:text-gray-300" />
+          {/* Notifications */}
+          <button className={`p-2 rounded-lg relative ${theme === 'dark' ? 'hover:bg-[#0057D9]/20' : 'hover:bg-gray-100'}`}>
+            <Bell size={20} className={theme === 'dark' ? 'text-[#ffffff]' : 'text-gray-600'} />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
           </button>
-          
-          <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-            <Settings size={20} className="text-gray-600 dark:text-gray-300" />
+
+          {/* Settings */}
+          <button className={`p-2 rounded-lg ${theme === 'dark' ? 'hover:bg-[#0057D9]/20' : 'hover:bg-gray-100'}`}>
+            <Settings size={20} className={theme === 'dark' ? 'text-[#ffffff]' : 'text-gray-600'} />
           </button>
 
-          {/* Theme Toggle Button */}
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            className={`p-2 rounded-lg ${theme === 'dark' ? 'hover:bg-[#0057D9]/20' : 'hover:bg-gray-100'}`}
           >
-            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+            {theme === 'light' ? <Moon size={20} className="#0057D9" /> : <Sun size={20} className="text-[#ffffff]" />}
           </button>
-          
+
+          {/* Profile */}
           <div className="flex items-center space-x-3">
             <div className="text-right">
-              <p className="text-sm font-medium text-gray-800 dark:text-gray-100">Dr. Sarah Johnson</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Computer Science</p>
+              <p className={`text-sm font-medium ${theme === 'dark' ? 'text-[#ffffff]' : 'text-gray-800'}`}>Dr. Sarah Johnson</p>
+              <p className={`text-xs ${theme === 'dark' ? 'text-[#ffffff]' : 'text-gray-500'}`}>Computer Science</p>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-[#0057D9] to-[#2196F3] rounded-full flex items-center justify-center">
               <span className="text-white font-semibold">SJ</span>
             </div>
           </div>

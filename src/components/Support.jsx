@@ -96,9 +96,9 @@ const Support = () => {
   };
 
   return (
-    <div className="space-y-6">
+ <div className="space-y-6 bg-gray-100 dark:bg-black dark:text-gray-100 transition-colors duration-300 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Help & Support</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-[#2196F3]">Help & Support</h1>
         <div className="flex items-center space-x-3">
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
             <MessageCircle size={18} />
@@ -115,19 +115,19 @@ const Support = () => {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Search */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c] p-6">
             <div className="relative">
-              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400" />
+              <Search size={20} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-white" />
               <input
                 type="text"
                 placeholder="Search for help articles, tutorials, or FAQs..."
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
               />
             </div>
           </div>
 
           {/* FAQ Section */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
             <div className="p-6 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center space-x-2">
                 <HelpCircle className="text-blue-500" size={24} />
@@ -146,9 +146,9 @@ const Support = () => {
                         <div key={faqIndex} className="border border-gray-200 dark:border-gray-700 rounded-lg">
                           <button
                             onClick={() => toggleFaq(globalIndex)}
-                            className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                            className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
                           >
-                            <span className="font-medium text-gray-900 dark:text-gray-100">{faq.question}</span>
+                            <span className="font-medium text-gray-900 dark:text-[#2196F3]">{faq.question}</span>
                             {expandedFaq === globalIndex ? (
                               <ChevronDown size={20} className="text-gray-500 dark:text-gray-400" />
                             ) : (
@@ -170,8 +170,8 @@ const Support = () => {
           </div>
 
           {/* Video Tutorials */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c]">
+            <div className="p-6 border-b border-gray-200 dark:border-[#05355c]">
               <div className="flex items-center space-x-2">
                 <Play className="text-green-500" size={24} />
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Video Tutorials</h2>
@@ -213,7 +213,7 @@ const Support = () => {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Contact Support */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Contact Support</h3>
             
             <div className="space-y-4">
@@ -246,7 +246,7 @@ const Support = () => {
           </div>
 
           {/* Submit Ticket */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Submit Support Ticket</h3>
             
             <form onSubmit={handleSupportSubmit} className="space-y-4">
@@ -297,7 +297,7 @@ const Support = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
             <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">Quick Links</h3>
             
             <div className="space-y-3">

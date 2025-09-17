@@ -23,7 +23,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen p-6 bg-gray-50 dark:bg-black text-gray-900 dark:text-[#2196F3]">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Profile</h1>
@@ -59,7 +59,7 @@ const Profile = () => {
 
       <div className="space-y-6">
         {/* Profile Card */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700 text-center">
+        <div className="bg-white dark:bg-black rounded-xl shadow p-6 border border-gray-200 dark:border-[#05355c] text-center">
           <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
             <span className="text-white text-2xl font-bold">SJ</span>
           </div>
@@ -97,7 +97,7 @@ const Profile = () => {
         </div>
 
         {/* About */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:text-white dark:bg-black rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold mb-4">About</h3>
           {isEditing ? (
             <textarea
@@ -130,13 +130,13 @@ const Profile = () => {
         </div>
 
         {/* Subjects */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:text-white dark:bg-black rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold mb-4">Subjects Taught</h3>
           <div className="space-y-2">
             {profile.subjects.map((subject, index) => (
               <span
                 key={index}
-                className="inline-block bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2"
+                className="inline-block bg-blue-50 dark:text-white dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm mr-2 mb-2"
               >
                 {subject}
               </span>
@@ -145,7 +145,7 @@ const Profile = () => {
         </div>
 
         {/* Qualifications */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:text-white dark:bg-black rounded-xl shadow p-6 border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold mb-4">Qualifications</h3>
           <div className="space-y-2">
             {profile.qualifications.map((qual, index) => (

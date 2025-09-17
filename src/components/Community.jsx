@@ -83,7 +83,7 @@ const Community = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Community & Events</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-[#2196F3]">Community & Events</h1>
         <div className="flex space-x-3">
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
             <Plus size={18} />
@@ -100,8 +100,8 @@ const Community = () => {
         {/* Main Feed */}
         <div className="lg:col-span-3">
           {/* Tabs */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
-            <div className="border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c] mb-6">
+            <div className="border-b border-gray-200 dark:border-[#05355c]">
               <nav className="flex space-x-8 px-6">
                 {[
                   { id: 'feed', label: 'Community Feed', count: posts.length },
@@ -114,7 +114,7 @@ const Community = () => {
                     className={`py-4 px-2 border-b-2 font-medium text-sm ${
                       activeTab === tab.id
                         ? 'border-blue-500 text-blue-600'
-                        : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                        : 'border-transparent text-gray-500 dark:text-white hover:text-gray-700 dark:hover:text-gray-200'
                     }`}
                   >
                     {tab.label} ({tab.count})
@@ -128,7 +128,7 @@ const Community = () => {
           {activeTab === 'feed' && (
             <div className="space-y-6">
               {posts.map((post) => (
-                <div key={post.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div key={post.id} className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c] overflow-hidden">
                   <div className="p-6">
                     <div className="flex items-start space-x-4 mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -149,7 +149,7 @@ const Community = () => {
                     <p className="text-gray-700 dark:text-gray-300 mb-4">{post.description}</p>
 
                     {post.type === 'event' && (
-                      <div className="bg-blue-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                      <div className="bg-blue-50 dark:bg-gray-900 rounded-lg p-4 mb-4">
                         <div className="flex items-center space-x-6 text-sm text-blue-700 dark:text-blue-300">
                           <div className="flex items-center space-x-1">
                             <Calendar size={16} />
@@ -208,7 +208,7 @@ const Community = () => {
           {activeTab === 'events' && (
             <div className="space-y-4">
               {upcomingEvents.map((event) => (
-                <div key={event.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+                <div key={event.id} className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c] p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{event.title}</h3>
@@ -245,7 +245,7 @@ const Community = () => {
           )}
 
           {activeTab === 'photos' && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {[1, 2, 3, 4, 5, 6].map((index) => (
                   <div key={index} className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
@@ -262,7 +262,7 @@ const Community = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#031a2e] p-6">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <button className="w-full p-3 bg-blue-50 dark:bg-blue-700 text-blue-700 dark:text-blue-100 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-600 transition-colors flex items-center space-x-3">
@@ -280,7 +280,7 @@ const Community = () => {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#03213a] p-6">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Upcoming Events</h3>
             <div className="space-y-3">
               {upcomingEvents.slice(0, 3).map((event) => (
@@ -295,7 +295,7 @@ const Community = () => {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+          <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#021627] p-6">
             <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Engagement</h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between">

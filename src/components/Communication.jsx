@@ -11,10 +11,16 @@ import {
   Smile,
   MoreVertical
 } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+
+
+const themeColors = {
+  primary: '#0057D9',
+  secondary: '#1976D2',
+  accent: '#2196F3'
+};
 
 const Communication = () => {
-  const { theme } = useTheme();
+ 
   const [activeChat, setActiveChat] = useState(1);
   const [messageText, setMessageText] = useState('');
   const [activeTab, setActiveTab] = useState('individual');
@@ -41,20 +47,20 @@ const Communication = () => {
 
   const sendMessage = () => {
     if (messageText.trim()) {
-      // Logic to send message (e.g., API call)
+      // Logic to send message (API call)
       setMessageText('');
     }
   };
 
   return (
-    <div className="h-[calc(100vh-12rem)] flex bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="h-[calc(100vh-12rem)] flex bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
       
       {/* Sidebar */}
       <div className="w-80 border-r border-gray-200 dark:border-gray-700 flex flex-col">
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">Messages</h1>
-            <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="p-2 bg-[#0057D9] text-white rounded-lg hover:bg-[#1976D2] transition-colors">
               <Plus size={18} />
             </button>
           </div>
@@ -64,7 +70,7 @@ const Communication = () => {
             <input
               type="text"
               placeholder="Search conversations..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#2196F3]"
             />
           </div>
         </div>
@@ -74,7 +80,7 @@ const Communication = () => {
             onClick={() => setActiveTab('individual')}
             className={`flex-1 py-3 px-4 text-sm font-medium ${
               activeTab === 'individual'
-                ? 'text-blue-600 border-b-2 border-blue-600'
+                ? 'text-[#0057D9] border-b-2 border-[#0057D9]'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
             }`}
           >
@@ -84,7 +90,7 @@ const Communication = () => {
             onClick={() => setActiveTab('groups')}
             className={`flex-1 py-3 px-4 text-sm font-medium ${
               activeTab === 'groups'
-                ? 'text-blue-600 border-b-2 border-blue-600'
+                ? 'text-[#0057D9] border-b-2 border-[#0057D9]'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
             }`}
           >
@@ -98,12 +104,12 @@ const Communication = () => {
               key={conv.id}
               onClick={() => setActiveChat(conv.id)}
               className={`p-4 border-b border-gray-100 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 ${
-                activeChat === conv.id ? 'bg-blue-50 dark:bg-blue-800 border-blue-200' : ''
+                activeChat === conv.id ? 'bg-[#0057D9]/10 dark:bg-[#0057D9]/20 border-[#0057D9]' : ''
               }`}
             >
               <div className="flex items-center space-x-3">
                 <div className="relative">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#0057D9] to-[#2196F3] rounded-full flex items-center justify-center">
                     <span className="text-white font-semibold text-sm">{conv.avatar}</span>
                   </div>
                   {conv.online && (
@@ -121,7 +127,7 @@ const Communication = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-gray-600 dark:text-gray-400 truncate">{conv.lastMessage}</p>
                     {conv.unread > 0 && (
-                      <span className="bg-blue-600 text-white text-xs rounded-full px-2 py-1 ml-2">
+                      <span className="bg-[#0057D9] text-white text-xs rounded-full px-2 py-1 ml-2">
                         {conv.unread}
                       </span>
                     )}
@@ -137,7 +143,7 @@ const Communication = () => {
               className="p-4 border-b border-gray-100 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#2196F3] to-[#1976D2] rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-sm">{group.avatar}</span>
                 </div>
 
@@ -152,7 +158,7 @@ const Communication = () => {
                       <span className="text-xs text-gray-500 dark:text-gray-400">{group.members} members</span>
                     </div>
                     {group.unread > 0 && (
-                      <span className="bg-blue-600 text-white text-xs rounded-full px-2 py-1">
+                      <span className="bg-[#0057D9] text-white text-xs rounded-full px-2 py-1">
                         {group.unread}
                       </span>
                     )}
@@ -166,31 +172,30 @@ const Communication = () => {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col bg-white dark:bg-gray-800">
+      <div className="flex-1 flex flex-col bg-white dark:bg-black">
         {activeChat ? (
           <>
             {/* Chat Header */}
             <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#0057D9] to-[#2196F3] rounded-full flex items-center justify-center">
                   <span className="text-white font-semibold text-sm">AJ</span>
                 </div>
                 <div>
                   <h2 className="font-semibold text-gray-900 dark:text-gray-100">Alex Johnson</h2>
-                  <p className="text-sm text-green-600">Online</p>
+                  <p className="text-sm text-green-500">Online</p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-2">
-                <button className="p-2 text-gray-400 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <Phone size={20} />
-                </button>
-                <button className="p-2 text-gray-400 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <Video size={20} />
-                </button>
-                <button className="p-2 text-gray-400 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <MoreVertical size={20} />
-                </button>
+                {[Phone, Video, MoreVertical].map((Icon, idx) => (
+                  <button
+                    key={idx}
+                    className="p-2 text-gray-400 dark:text-gray-300 hover:text-gray-600 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                  >
+                    <Icon size={20} />
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -200,7 +205,7 @@ const Communication = () => {
                 <div key={message.id} className={`flex ${message.isMe ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-xs lg:max-w-md ${message.isMe ? 'order-2' : 'order-1'}`}>
                     <div className={`px-4 py-2 rounded-lg ${
-                      message.isMe ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100'
+                      message.isMe ? 'bg-[#0057D9] text-white' : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100'
                     }`}>
                       <p className="text-sm">{message.text}</p>
                     </div>
@@ -208,7 +213,7 @@ const Communication = () => {
                   </div>
 
                   {!message.isMe && (
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-2 order-0">
+                    <div className="w-8 h-8 bg-gradient-to-br from-[#0057D9] to-[#2196F3] rounded-full flex items-center justify-center mr-2 order-0">
                       <span className="text-white font-semibold text-xs">AJ</span>
                     </div>
                   )}
@@ -228,7 +233,7 @@ const Communication = () => {
                   value={messageText}
                   onChange={(e) => setMessageText(e.target.value)}
                   placeholder="Type a message..."
-                  className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#2196F3]"
                   onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                 />
 
@@ -238,7 +243,7 @@ const Communication = () => {
 
                 <button
                   onClick={sendMessage}
-                  className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="p-2 bg-[#0057D9] text-white rounded-lg hover:bg-[#1976D2] transition-colors"
                 >
                   <Send size={20} />
                 </button>

@@ -70,16 +70,16 @@ const StudentManagement = () => {
   });
 
   return (
-    <div className="space-y-6">
+ <div className="space-y-6 bg-gray-100 dark:bg-black dark:text-gray-100 transition-colors duration-300 p-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Student Management</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-[#2196F3]">Student Management</h1>
         <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
           Add Student
         </button>
       </div>
 
       {/* Search and Filter */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
           <div className="relative flex-1">
             <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400" />
@@ -88,7 +88,7 @@ const StudentManagement = () => {
               placeholder="Search students by name or ID..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              className="pl-10 pr-4 py-2 w-full border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100"
             />
           </div>
           <div className="flex items-center space-x-4">
@@ -112,7 +112,7 @@ const StudentManagement = () => {
       {/* Students List */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredStudents.map((student) => (
-          <div key={student.id} className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow">
+          <div key={student.id} className="bg-white dark:bg-black rounded-xl shadow-sm border border-gray-200 dark:border-[#05355c] p-6 hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">

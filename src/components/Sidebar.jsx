@@ -27,19 +27,25 @@ const Sidebar = ({ activeTab, setActiveTab, collapsed, setCollapsed }) => {
   ];
 
   return (
-    <div className={`bg-white dark:bg-gray-900 shadow-lg transition-all duration-300 fixed left-0 top-0 h-full z-50 ${collapsed ? 'w-20' : 'w-64'}`}>
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+    <div className={`transition-all duration-300 fixed left-0 top-0 h-full z-50 
+      ${collapsed ? 'w-20' : 'w-64'} 
+      ${'bg-white dark:bg-black shadow-lg'}`}>
+      
+      {/* Header / Title */}
+      <div className="p-4 flex items-center justify-between">
         {!collapsed && (
-          <h1 className="text-xl font-bold text-gray-800 dark:text-gray-100">Mentor Dashboard</h1>
+          <h1 className="text-xl font-bold text-gray-800 dark:text-[#2196F3]">Mentor Dashboard</h1>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="p-2 rounded-lg hover:bg-[#0057D9]/10 dark:hover:bg-[#1976D2]/20 transition-colors"
         >
-          {collapsed ? <Menu size={20} className="text-gray-800 dark:text-gray-100" /> : <X size={20} className="text-gray-800 dark:text-gray-100" />}
+          {collapsed ? <Menu size={20} className="text-gray-800 dark:text-[#2196F3]" /> 
+                     : <X size={20} className="text-gray-800 dark:text-[#2196F3]" />}
         </button>
       </div>
       
+      {/* Menu Items */}
       <nav className="mt-6">
         {menuItems.map((item) => {
           const Icon = item.icon;
@@ -51,8 +57,8 @@ const Sidebar = ({ activeTab, setActiveTab, collapsed, setCollapsed }) => {
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center px-4 py-3 text-left transition-all duration-200 ${
                 isActive 
-                  ? 'bg-blue-50 dark:bg-blue-800 text-blue-600 dark:text-blue-300 border-r-2 border-blue-600 dark:border-blue-300' 
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-100'
+                  ? 'bg-[#0057D9]/10 dark:bg-[#2196F3]/20 text-[#0057D9] dark:text-[#2196F3] border-r-2 border-[#0057D9] dark:border-[#2196F3]' 
+                  : 'text-gray-600 dark:text-[#ffffff] hover:bg-[#0057D9]/5 dark:hover:bg-[#0057D9]/10 hover:text-[#0057D9] dark:hover:text-[#2196F3]'
               }`}
             >
               <Icon size={20} className="flex-shrink-0" />

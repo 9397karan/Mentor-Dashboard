@@ -60,8 +60,8 @@ const Profile = () => {
       <div className="space-y-6">
         {/* Profile Card */}
         <div className="bg-white dark:bg-black rounded-xl shadow p-6 border border-gray-200 dark:border-[#05355c] text-center">
-          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <span className="text-white text-2xl font-bold">SJ</span>
+          <div className="w-28 h-28 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <img src='https://i.pinimg.com/736x/1b/14/f5/1b14f5d219943c538a3390d422b58219.jpg' className="text-white text-2xl font-bold rounded-full"/>
           </div>
           {isEditing ? (
             <input
